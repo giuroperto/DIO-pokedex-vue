@@ -1,0 +1,10 @@
+.text {
+  @include modifiers($colors, "color");
+}
+
+.bg {
+  @include modifiers($colors, "background");
+}
+
+// quando tem uma classe e &--atribute -> vai gerar no & o nome da classe
+// exemplo .text--yellow
