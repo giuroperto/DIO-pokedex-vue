@@ -1,6 +1,6 @@
 import Factory from './factory';
 
-const coreApiUrl = '';
+const coreApiUrl = 'https://pokeapi.co/api/v2';
 
 // criacao de instancia passando a coreApi
 const commonInstance = Factory(coreApiUrl);
