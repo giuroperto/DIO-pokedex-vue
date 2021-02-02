@@ -41,15 +41,75 @@ export default {
 			if (pokemonsList ? .results ? .length) {
 				// gera um array de promises -> pokeAPI retorna uma chamada do axios get, e nao estamos utilizando a resolucao de promises e nem async await -> simplesmente retorna a chamada (não tem await) -> configurando promises para cada pokemon -> gerar uma listagem de promises que vai simbolizar cada pokemon
 				const prepareInfo = pokemonsList.results.map((item) => PokeAPI.getPokemonByName(item
-          .name));
-          // agora estara resolvendo as promises, todas que estao dentro do array, se nao usar o await vai gerar uma promise nao resolvida
-        const pokemonsInfo = await Promise.all(prepareInfo);
-        
-        setList(pokemonsInfo);
+					.name));
+				// agora estara resolvendo as promises, todas que estao dentro do array, se nao usar o await vai gerar uma promise nao resolvida
+				const pokemonsInfo = await Promise.all(prepareInfo);
+
+				setList(pokemonsInfo);
 			}
 
+			// a propria API tras a info de next caso exista mais elementos
+			if (pokemonsList ? .next) {
+				setListHasNext(true);
+				updateOffset();
+			} else {
+				setListHasNext(false);
+				setListHasCompleted(true);
+			}
 		} catch (error) {
-
+			setListHasError(true);
 		}
 	},
+
+	asyn getPokemonByName(name) {
+		const {
+			setPokemonSearched
+		} = mutations;
+
+		const pokemon = await PokeAPI.getPokemonByName(name);
+
+		if (pokemon) {
+			setPokemonSearched(pokemon);
+		}
+	},
+
+	async searchPokemon(name) {
+		const {
+			setIsPokemonSearch,
+			setIsSearching,
+			setPokemonSearched,
+			setSearchHasError,
+			resetList,
+		} = mutations;
+
+		// se chamar o search pokemon sem nada -> reseta a lista
+		if (!name) {
+			resetList();
+			return;
+		}
+
+		try {
+			setSearchHasError(false);
+			setIsSearching(true);
+			setIsPokemonSearch(true);
+
+			// ve se o pokemon procurado ja existe na lista, pois ai nao precisa chamar a api novamente
+			const pokemon = state.list.find(info => info.name.toLowerCase() === name.toLowerCase());
+
+			if (pokemon) {
+				setPokemonSearched(pokemon);
+				return;
+			}
+
+			await this.getPokemonByName(name);
+		} catch (error) {
+			setSearchHasError(true);
+		} finally {
+			// ou vai dar sucesso ou vai dar erro e tira o loading
+			setIsSearching(false);
+		}
+
+
+	}
+
 };
