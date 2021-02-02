@@ -3,24 +3,25 @@
     <!-- classes serão injetadas no componente -->
     <TopPanel />
     <LeftPanel class="pokedex--left" />
-    <!-- <Divider />
-    <RightPanel class="pokedex--right" /> -->
+    <Divider />
+    <RightPanel class="pokedex--right" />
   </div>
 </template>
 
 <script>
   import TopPanel from './TopPanel/TopPanel.vue';
   import LeftPanel from './LeftPanel/LeftPanel.vue';
-  // import RightPanel from './RightPanel/RightPanel.vue';
-  // import Divider from './Divider/Divider.vue';
+  import RightPanel from './RightPanel/RightPanel.vue';
+  import Divider from './Divider/Divider.vue';
+
 export default {
   // definir nome como boas práticas -> nome do arquivo
   name: 'Pokedex',
   components: {
     TopPanel,
     LeftPanel,
-    // RightPanel,
-    // Divider,
+    RightPanel,
+    Divider,
   },
 };
 </script>

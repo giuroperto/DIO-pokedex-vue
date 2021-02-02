@@ -38,7 +38,7 @@ export default {
 
 			// antigamente para fazer if qdo n queriamos que o acesso a propriedades de objetos causassem problemas tinhamos que garantir que a variavel pokemonList existisse, que o pokemonsList.results existisse e o pokemonsList.results.length existisse -> gera mta complexidade
 			// chaining opcional na condicional
-			if (pokemonsList ? .results ? .length) {
+			if (pokemonsList?.results?.length) {
 				// gera um array de promises -> pokeAPI retorna uma chamada do axios get, e nao estamos utilizando a resolucao de promises e nem async await -> simplesmente retorna a chamada (não tem await) -> configurando promises para cada pokemon -> gerar uma listagem de promises que vai simbolizar cada pokemon
 				const prepareInfo = pokemonsList.results.map((item) => PokeAPI.getPokemonByName(item
 					.name));
@@ -49,7 +49,7 @@ export default {
 			}
 
 			// a propria API tras a info de next caso exista mais elementos
-			if (pokemonsList ? .next) {
+			if (pokemonsList?.next) {
 				setListHasNext(true);
 				updateOffset();
 			} else {
@@ -61,7 +61,7 @@ export default {
 		}
 	},
 
-	asyn getPokemonByName(name) {
+	async getPokemonByName(name) {
 		const {
 			setPokemonSearched
 		} = mutations;
@@ -94,7 +94,7 @@ export default {
 			setIsPokemonSearch(true);
 
 			// ve se o pokemon procurado ja existe na lista, pois ai nao precisa chamar a api novamente
-			const pokemon = state.list.find(info => info.name.toLowerCase() === name.toLowerCase());
+			const pokemon = state.tmplist.find(info => info.name.toLowerCase() === name.toLowerCase());
 
 			if (pokemon) {
 				setPokemonSearched(pokemon);

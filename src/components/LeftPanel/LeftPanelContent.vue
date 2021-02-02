@@ -1,17 +1,17 @@
 <template>
   <div class="content">
-    <!-- <List /> -->
+    <List />
   </div>
 </template>
 
 <script>
 
-// import List from '@/components/List/List.vue'
+import List from '@/components/List/List.vue';
 
 export default {
   name: 'LeftPanelContent',
   components: {
-    // List,
+    List,
   },
 };
 </script>
