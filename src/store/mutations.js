@@ -14,9 +14,9 @@ export default {
 	},
 
 	// Adds pokemons to the pokedex for the infinite loading
-	setList(List) {
-		state.list.push(...List);
-		state.tempList.push(...List);
+	setList(list) {
+		state.list.push(...list);
+		state.tempList.push(...list);
 	},
 
 	// Informs if the pokedex needs more data
@@ -43,7 +43,7 @@ export default {
 	},
 
 	// Adds to the pokedex only the searched pokemon
-	setPokemonSearch(pokemon) {
+	setPokemonSearched(pokemon) {
 		// para deixar o codigo mais simples, sempre vamos trabalhar com listagem
 		// como tem um pokemon apenas, retorna so a info do pokemon na listagem
 		// trabalhar com uma lista com um só pokemon -> response = objeto
@@ -63,5 +63,5 @@ export default {
 	// Informs that search got an error
 	setSearchHasError(flag) {
 		state.searchHasError = flag;
-	}
+	},
 };

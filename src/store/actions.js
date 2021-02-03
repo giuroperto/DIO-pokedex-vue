@@ -40,7 +40,7 @@ export default {
 			// chaining opcional na condicional
 			if (pokemonsList?.results?.length) {
 				// gera um array de promises -> pokeAPI retorna uma chamada do axios get, e nao estamos utilizando a resolucao de promises e nem async await -> simplesmente retorna a chamada (não tem await) -> configurando promises para cada pokemon -> gerar uma listagem de promises que vai simbolizar cada pokemon
-				const prepareInfo = pokemonsList.results.map((item) => PokeAPI.getPokemonByName(item
+				const prepareInfo = pokemonsList.results.map(item => PokeAPI.getPokemonByName(item
 					.name));
 				// agora estara resolvendo as promises, todas que estao dentro do array, se nao usar o await vai gerar uma promise nao resolvida
 				const pokemonsInfo = await Promise.all(prepareInfo);
@@ -62,10 +62,13 @@ export default {
 	},
 
 	async getPokemonByName(name) {
+		console.log('dentro do getpokemon');
 		const {
-			setPokemonSearched
+			setPokemonSearched,
 		} = mutations;
 
+		console.log(setPokemonSearched);
+		
 		const pokemon = await PokeAPI.getPokemonByName(name);
 
 		if (pokemon) {
@@ -110,8 +113,5 @@ export default {
 			// ou vai dar sucesso ou vai dar erro e tira o loading
 			setIsSearching(false);
 		}
-
-
-	}
-
+	},
 };

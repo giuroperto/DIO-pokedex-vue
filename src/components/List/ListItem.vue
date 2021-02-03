@@ -1,5 +1,5 @@
 <template>
-	<li class="list__i">
+	<li class="list__item">
 		<img :src="sprite" alt="name" class="sprite">
 		<div class="informations">
 			<h3 class="identification">
@@ -7,18 +7,22 @@
 				<span class="name">{{ name }}</span>
 			</h3>
 			<div class="types">
-				<span v-for="type in types" :key="type" :class="`bg--${type}`" class="type text--black">
+				<span
+          v-for="type in types"
+          :key="type"
+          :class="`bg--${type}`"
+          class="type text--black"
+          >
 					{{ type }}
 				</span>
 			</div>
 		</div>
 	</li>
-
 </template>
 
 <script>
 export default {
-	name: "ListItem",
+	name: 'ListItem',
 	props: {
 		name: {
 			type: String,
@@ -38,14 +42,14 @@ export default {
       validator(values) {
         // a primeira parte garante que só vai ser executada se for um array, e a segunda é que os valores sempre sejam do tipo string.
         return Array.isArray(values) && values.every(value => typeof value === 'string');
-      }
+      },
 		},
 	},
 };
 </script>
 
 <style lang="scss" scoped>
-  .list_item {
+  .list__item {
     display: flex;
     justify-content: space-between;
     align-items: center;

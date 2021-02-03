@@ -8,7 +8,7 @@ export default {
 	// ex: pokemonInfoGetter.pokemonsInfo
 
 	// sem o getter, sempre que fosse acessar o estado teria que fazer esse mapeamento para tratar as infos
-	get PokemonsInfo() {
+	get pokemonsInfo() {
 		return state.list.map(info => ({
 			id: info.id,
 			name: info.name,
