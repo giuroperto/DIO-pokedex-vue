@@ -16,9 +16,9 @@ import {
 function Factory(baseURL) {
 	const instance = axios.create({
 		baseURL,
-    });
-    
-    //toda request e response ser interceptada pelo interceptador
+	});
+
+	// toda request e response ser interceptada pelo interceptador
 
 	instance.interceptors.request.use(requestInterceptor);
 

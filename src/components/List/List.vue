@@ -20,7 +20,7 @@
 
 <script>
 import { state, getters, actions } from "@/store";
-// import ListItem from "./ListItem.vue";
+import ListItem from "./ListItem.vue";
 
 export default {
 	name: "List",

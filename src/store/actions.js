@@ -94,6 +94,8 @@ export default {
 			setIsPokemonSearch(true);
 
 			// ve se o pokemon procurado ja existe na lista, pois ai nao precisa chamar a api novamente
+			// fazendo a busca dentro do state.list -> vai ser substituida a cada search pelo pokemon buscado, enquanto a templist armazena todos os pokemons
+			// isso evita chamadas desnecessarias a api, ja que ficam armazenadas no cache as infos dos pokemons
 			const pokemon = state.tmplist.find(info => info.name.toLowerCase() === name.toLowerCase());
 
 			if (pokemon) {
