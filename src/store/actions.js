@@ -77,6 +77,10 @@ export default {
 	},
 
 	async searchPokemon(name) {
+
+		console.log('inside search pokemon');
+		console.log(name);
+
 		const {
 			setIsPokemonSearch,
 			setIsSearching,
@@ -92,14 +96,16 @@ export default {
 		}
 
 		try {
+			console.log('inside try search pokemon');
 			setSearchHasError(false);
 			setIsSearching(true);
 			setIsPokemonSearch(true);
 
+			const pokemon = state.tempList.find(item => item.name.toLowerCase() === name.toLowerCase());
+
 			// ve se o pokemon procurado ja existe na lista, pois ai nao precisa chamar a api novamente
 			// fazendo a busca dentro do state.list -> vai ser substituida a cada search pelo pokemon buscado, enquanto a templist armazena todos os pokemons
 			// isso evita chamadas desnecessarias a api, ja que ficam armazenadas no cache as infos dos pokemons
-			const pokemon = state.tmplist.find(info => info.name.toLowerCase() === name.toLowerCase());
 
 			if (pokemon) {
 				setPokemonSearched(pokemon);

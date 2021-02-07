@@ -41,7 +41,7 @@ import { actions, mutations } from '@/store';
     },
     methods: {
       clear() {
-        this.name= '';
+        this.name = '';
         // nao usou action pra depois usar mutation dentro dela pois usa com chamadas assincronas -> reset a lista é só pegar o que tava no cache e adicionar de volta -> nao é chamada assincrona
         mutations.resetList();
       },
