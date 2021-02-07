@@ -6,6 +6,7 @@
 		<!-- caso seja um search, vai fazer o v-bind da posicao zero -> como no search gera uma lista com um elemento, acessa o elemento no vbind para pegar o pokemon -> um objeto dentro do array -->
 		<ListItem v-else-if="isPokemonSearching" v-bind="pokemonsList[0]" />
 
+    <PokemonDescription v-else-if="pokemonId" :id="pokemonId" />
 		<!-- se nao for nenhum desses 3 casos, v-else, pq ai teremos dois filhos irmaos e para ambos serem renderizados ao mesmo tempo -> template n eh renderizado mas renderiza os filhos -->
 
 		<template v-else>
@@ -21,11 +22,13 @@
 <script>
   import { state, getters, actions } from '@/store';
   import ListItem from './ListItem.vue';
+  import PokemonDescription from '@/components/PokemonDescription/PokemonDescription.vue';
 
   export default {
     name: 'List',
     components: {
       ListItem,
+      PokemonDescription,
     },
     computed: {
       // pq estamos colocando tudo isso dentro da propriedade computada? estado tem que ser reativo -> para deixar a reatividade acontecer no componente, usa a propriedade computada que é especifica para gerar a reatividade de variaveis -> as duas variaveis abaixo sao reativas e retornam os estados reativos
@@ -41,6 +44,9 @@
       hasSearchError() {
         return state.searchHasError;
       },
+      pokemonId() {
+        return state.pokemonId;
+      }
     },
     methods: {
       // assincrono pois vamos fazer as chamadas das actions aqui dentro
